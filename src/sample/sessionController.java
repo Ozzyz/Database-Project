@@ -14,4 +14,10 @@ public class sessionController extends SceneController{
     public void backButtonClicked(ActionEvent evt){
         super.backButtonClicked(evt);
     }
+
+    public void addRegisterButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void addCancelButtonClicked(ActionEvent actionEvent) {
+    }
 }
