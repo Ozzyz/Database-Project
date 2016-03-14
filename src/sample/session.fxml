@@ -20,16 +20,10 @@
     <TextArea id="formål" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Skriv her..."></TextArea>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Notat: </Label>
-    <TextArea id="notat" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Skriv her..."></TextArea>
+    <TextArea id="notat" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="75" prefWidth="125" promptText="Skriv her..."></TextArea>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="5" text="Avbryt" onAction="#backButtonClicked"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="5" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
-
-    <TextArea id="formål" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Desimaltall"></TextArea>
-
-
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#backButtonClicked"></Button>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
 
 
 </GridPane>

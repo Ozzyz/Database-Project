@@ -5,10 +5,7 @@
 <?import javafx.scene.control.Label?>
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b18d17ae6eaa03a17d53dea3998b2b2712d4da3
     <Label text="Treningsdagbok v.0.1"
            GridPane.columnIndex="1"
            GridPane.rowIndex="0"
