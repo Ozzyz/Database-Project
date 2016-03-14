@@ -5,6 +5,26 @@
 <?import javafx.scene.control.Label?>
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<<<<<<< HEAD
     <Button GridPane.rowIndex="0" text="Registrer økt" onAction="#addSessionButtonClicked"/>
     <Button GridPane.rowIndex="1" text="Legg til øvelse" onAction="#addExerciseButtonClicked"/>
+=======
+
+    <Label text="Treningsdagbok v.0.1"
+           GridPane.columnIndex="1"
+           GridPane.rowIndex="0"
+           textFill="blue"
+
+    />
+    <Button text="Registrer økt" onAction="#addSessionButtonClicked"
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="1"/>
+    <Button text="Legg til øvelse" onAction="#addExerciseButtonClicked"
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="2"/>
+    <Button text="Lag nytt program" onAction="#addNewProgramButtonClicked"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="3"
+            />
+>>>>>>> d0b50290d4ed4325bd29c18af3f25297e7ae1b6c
 </GridPane>
