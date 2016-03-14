@@ -8,7 +8,11 @@
 
     <ListView fx:id="muscleListView" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     <ListView fx:id="programListView" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-    <Button text="---|=" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-    <Button text="=|---" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+    <Button text="---|=" GridPane.columnIndex="2" GridPane.rowIndex="1"
+        onAction="#addExerciseButtonClicked"
+    />
+    <Button text="=|---" GridPane.columnIndex="2" GridPane.rowIndex="2"
+        onAction="#removeExerciseButtonClicked"
+            />
 
 </GridPane>

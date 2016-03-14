@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -20,12 +21,13 @@ public class programController extends SceneController implements Initializable{
     @FXML ListView<String> muscleListView;
     List<String> muscleList = Arrays.asList("ben", "arm", "sko");
     List<String> programList = new ArrayList<>();
-
+    ObservableList<String> MuscleItems = FXCollections.observableArrayList (
+            "Test1", "Test2", "ASD", "123");
+    ObservableList<String> ProgramItems = FXCollections.observableArrayList();
 
     public void populateListView(){
-        ObservableList<String> items = FXCollections.observableArrayList (
-                "Test1", "Test2", "ASD", "123");
-        muscleListView.setItems(items);
+        muscleListView.setItems(MuscleItems);
+        programListView.setItems(ProgramItems);
     }
 
 
@@ -33,6 +35,16 @@ public class programController extends SceneController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         // Here we will fetch data from db
         populateListView();
+    }
+
+    public void addExerciseButtonClicked(ActionEvent actionEvent) {
+        // Get what item the user has selected
+        String selectedItem = muscleListView.getSelectionModel().getSelectedItem();
+        MuscleItems.remove(selectedItem);
+        ProgramItems.add(selectedItem);
+    }
+
+    public void removeExerciseButtonClicked(ActionEvent actionEvent) {
 
     }
 }
