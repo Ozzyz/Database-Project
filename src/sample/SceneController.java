@@ -23,4 +23,11 @@ public class SceneController {
 
         currentStage.setScene(new Scene(newroot, 600,600));
     }
+    public void backButtonClicked(ActionEvent evt) {
+        try {
+            changeScene("sample.fxml", evt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
