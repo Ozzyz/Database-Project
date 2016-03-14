@@ -17,13 +17,13 @@
     <DatePicker id="dato" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="dd.mm.åååå"></DatePicker>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Formål: </Label>
-    <TextArea id="formål" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Desimaltall"></TextArea>
-    <Button text="Tilbake" onAction="#backButtonClicked"
-            GridPane.columnIndex="0"
-            GridPane.rowIndex="0"/>
+    <TextArea id="formål" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Skriv her..."></TextArea>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#addCancelButtonClicked"></Button>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Notat: </Label>
+    <TextArea id="notat" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Skriv her..."></TextArea>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="5" text="Avbryt" onAction="#backButtonClicked"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="5" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
 
 
 </GridPane>

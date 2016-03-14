@@ -17,7 +17,4 @@ public class sessionController extends SceneController{
 
     public void addRegisterButtonClicked(ActionEvent actionEvent) {
     }
-
-    public void addCancelButtonClicked(ActionEvent actionEvent) {
-    }
 }
