@@ -22,7 +22,7 @@
             GridPane.columnIndex="0"
             GridPane.rowIndex="0"/>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#addCancelButtonClicked"></Button>
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#backButtonClicked"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
 
 
