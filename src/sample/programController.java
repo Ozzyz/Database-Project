@@ -6,11 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 /**
@@ -18,16 +17,15 @@ import java.util.ResourceBundle;
  */
 public class programController extends SceneController implements Initializable{
     @FXML public ListView programListView;
-    @FXML ListView<String> muscleListView;
-    List<String> muscleList = Arrays.asList("ben", "arm", "sko");
-    List<String> programList = new ArrayList<>();
-    ObservableList<String> MuscleItems = FXCollections.observableArrayList (
+    public TextField programNameTextField;
+    @FXML ListView<String> exerciseListView;
+    ObservableList<String> ExerciseItems = FXCollections.observableArrayList (
             "Test1", "Test2", "ASD", "123");
     ObservableList<String> ProgramItems = FXCollections.observableArrayList();
 
     public void populateListView(){
         //TODO: This should be done by db-handler
-        muscleListView.setItems(MuscleItems);
+        exerciseListView.setItems(ExerciseItems);
         programListView.setItems(ProgramItems);
     }
 
@@ -40,9 +38,9 @@ public class programController extends SceneController implements Initializable{
 
     public void addExerciseButtonClicked(ActionEvent actionEvent) {
         // Get what item the user has selected
-        String selectedItem = muscleListView.getSelectionModel().getSelectedItem();
+        String selectedItem = exerciseListView.getSelectionModel().getSelectedItem();
         if(selectedItem != null) {
-            MuscleItems.remove(selectedItem);
+            ExerciseItems.remove(selectedItem);
             ProgramItems.add(selectedItem);
         }
     }
@@ -51,9 +49,21 @@ public class programController extends SceneController implements Initializable{
         // Get what item the user has selected
         String selectedItem = (String) programListView.getSelectionModel().getSelectedItem();
         if(selectedItem != null){
-            MuscleItems.add(selectedItem);
+            ExerciseItems.add(selectedItem);
             ProgramItems.remove(selectedItem);
         }
 
+    }
+
+    public void saveButtonClicked(ActionEvent actionEvent) {
+        // TODO: Write stuff to the database
+
+        // Get all selected items
+        ObservableList selectedItems = programListView.getItems();
+        String programName = programNameTextField.getText();
+
+        for(Object e: selectedItems){
+            System.out.println(e.toString());
+        }
     }
 }
