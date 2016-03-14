@@ -38,4 +38,12 @@ public class Controller {
         currentStage.setScene(new Scene(newroot, 600,600));
 
     }
+
+    public void addNewProgramButtonClicked(ActionEvent actionEvent) {
+        try {
+            changeScene("program.fxml", actionEvent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
