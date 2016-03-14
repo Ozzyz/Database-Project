@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Controller {
+public class Controller extends SceneController{
     @FXML
     public void addSessionButtonClicked(ActionEvent actionEvent) {
         try {
@@ -22,22 +22,13 @@ public class Controller {
     @FXML
     public void addExerciseButtonClicked(ActionEvent actionEvent) {
         try {
-            changeScene("session.fxml", actionEvent);
+            changeScene("exercise.fxml", actionEvent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void changeScene(String fxml_resource, ActionEvent evt) throws IOException {
 
-        // Change scene to where we register session
-        Stage currentStage = (Stage) ((Node) evt.getSource()).getScene().getWindow();
-
-        Parent newroot = FXMLLoader.load(getClass().getResource("session.fxml"));
-
-        currentStage.setScene(new Scene(newroot, 600,600));
-
-    }
 
     public void addNewProgramButtonClicked(ActionEvent actionEvent) {
         try {
