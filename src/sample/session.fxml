@@ -1,0 +1,8 @@
+<?import javafx.scene.layout.GridPane?>
+<GridPane fx:controller="sample.sessionController" >
+
+
+
+
+
+    </GridPane>
