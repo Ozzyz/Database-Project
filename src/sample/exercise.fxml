@@ -9,7 +9,7 @@
     <TextField id="navn" GridPane.columnIndex="1" GridPane.rowIndex="0"></TextField>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Muskelgruppe: </Label>
-    <ComboBox id="gruppe" GridPane.columnIndex="1" GridPane.rowIndex="1"></ComboBox>
+    <ComboBox id="gruppe" fx:id="gruppeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1"></ComboBox>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Avbryt" onAction="#backButtonClicked"/>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Registrer" onAction="#registerExercise"/>
