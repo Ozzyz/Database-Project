@@ -7,4 +7,6 @@
     <Button GridPane.columnIndex="0" GridPane.rowIndex="0" text="Avbryt" onAction="#backButtonClicked"/>
 
     <ListView fx:id="muscleListView" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <ListView fx:id="programListView" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
 </GridPane>
