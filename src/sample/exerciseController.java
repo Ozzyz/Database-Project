@@ -23,6 +23,8 @@ public class exerciseController extends SceneController implements Initializable
     }
 
     public void populateComboBox(){
+        // TODO: Make DBHandler populate the combobox with saved exercises
+
         ArrayList<String> list = new ArrayList<String>();
         list.add("Item1");
         list.add("Item2");
