@@ -7,14 +7,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * Created by Ozzy on 14.03.2016.
  */
 public class programController extends SceneController implements Initializable{
-    @FXML
-    ListView<String> muscleListView;
+    @FXML public ListView programListView;
+    @FXML ListView<String> muscleListView;
+    List<String> muscleList = Arrays.asList("ben", "arm", "sko");
+    List<String> programList = new ArrayList<>();
+
 
     public void populateListView(){
         ObservableList<String> items = FXCollections.observableArrayList (
@@ -27,5 +33,6 @@ public class programController extends SceneController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         // Here we will fetch data from db
         populateListView();
+
     }
 }
