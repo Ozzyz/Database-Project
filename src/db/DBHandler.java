@@ -1,0 +1,85 @@
+package db;
+
+        import java.sql.*;
+        import java.util.ArrayList;
+        import java.util.Scanner;
+
+public class DBHandler {
+    static private int gruppeID; // variablelene skal incrementeres for hver gang en nytt objekt blir satt inn
+    static private int programID;
+    static private int øktID;
+
+    public static ResultSet getTables(DatabaseMetaData dbmd) throws SQLException{
+        return dbmd.getTables(null, null, null, null);
+    }
+    public static ResultSet getColums(String tableName, DatabaseMetaData dbmd) throws SQLException{
+        return dbmd.getColumns(null, null, tableName, null);
+    }
+    public static void leggTilProgram(Connection conn,String navn) throws SQLException{
+        programID++;
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO program VALUES("+'"'+programID+'"'+",?)");
+        ps.setString(1, navn);
+        ps.executeUpdate();
+
+    }
+    public static void leggTilGruppe(Connection conn,String muskelgruppe, String tilhører) throws SQLException{
+        if(!checkIfInDB(conn,"gruppe","muskelgruppe",tilhører)){
+            gruppeID++;
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe VALUES("+'"'+gruppeID+'"'+",?)");
+            ps.setString(1, tilhører);
+            ps.setNull(2, java.sql.Types.INTEGER);//ikke ferdig
+            ps.executeUpdate();
+        }
+        if(!checkIfInDB(conn,"gruppe","muskelgruppe",muskelgruppe)){
+            gruppeID++;
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe VALUES("+'"'+gruppeID+'"'+",?,?)");
+            ps.setString(1, muskelgruppe);
+            ps.setString(2, tilhører);
+            ps.executeUpdate();
+        }
+        else{
+            System.out.println("finnes i databasen");
+        }
+    }
+    public static void getMuskelGruppe(Connection conn, String muskelgruppe ){
+
+    }
+    public static boolean checkIfInDB(Connection conn,String table, String column, String tuplevalue) throws SQLException{
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM "+table+" WHERE "+ column+"=?");
+        ps.setString(1, tuplevalue);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()){
+            return true;
+        }
+        else return false;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Connection conn = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","raspberry");
+            Statement sqlState = conn.createStatement();
+            DatabaseMetaData dbmd = conn.getMetaData();
+            leggTilGruppe(conn,"legger","0");
+
+        }
+
+        catch (SQLException ex) {
+
+            // String describing the error
+
+            System.out.println("SQLException: " + ex.getMessage());
+
+            // Vendor specific error code
+
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+        catch (ClassNotFoundException e) {
+            // Executes if the driver can't be found
+            e.printStackTrace();
+        }
+
+    }
+}
