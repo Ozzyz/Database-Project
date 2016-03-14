@@ -9,4 +9,6 @@ import java.io.IOException;
  */
 public class exerciseController extends SceneController {
 
+    public void registerExercise(ActionEvent actionEvent) {
+    }
 }
