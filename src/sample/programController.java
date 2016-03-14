@@ -26,6 +26,7 @@ public class programController extends SceneController implements Initializable{
     ObservableList<String> ProgramItems = FXCollections.observableArrayList();
 
     public void populateListView(){
+        //TODO: This should be done by db-handler
         muscleListView.setItems(MuscleItems);
         programListView.setItems(ProgramItems);
     }
@@ -40,11 +41,19 @@ public class programController extends SceneController implements Initializable{
     public void addExerciseButtonClicked(ActionEvent actionEvent) {
         // Get what item the user has selected
         String selectedItem = muscleListView.getSelectionModel().getSelectedItem();
-        MuscleItems.remove(selectedItem);
-        ProgramItems.add(selectedItem);
+        if(selectedItem != null) {
+            MuscleItems.remove(selectedItem);
+            ProgramItems.add(selectedItem);
+        }
     }
 
     public void removeExerciseButtonClicked(ActionEvent actionEvent) {
+        // Get what item the user has selected
+        String selectedItem = (String) programListView.getSelectionModel().getSelectedItem();
+        if(selectedItem != null){
+            MuscleItems.add(selectedItem);
+            ProgramItems.remove(selectedItem);
+        }
 
     }
 }
