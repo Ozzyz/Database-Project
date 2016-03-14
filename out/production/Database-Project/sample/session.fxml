@@ -18,9 +18,7 @@
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Formål: </Label>
     <TextArea id="formål" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Desimaltall"></TextArea>
-    <Button text="Tilbake" onAction="#backButtonClicked"
-            GridPane.columnIndex="0"
-            GridPane.rowIndex="0"/>
+
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#backButtonClicked"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
