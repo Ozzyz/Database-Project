@@ -29,7 +29,7 @@ public class Controller extends SceneController{
     }
 
 
-
+    @FXML
     public void addNewProgramButtonClicked(ActionEvent actionEvent) {
         try {
             changeScene("program.fxml", actionEvent);
