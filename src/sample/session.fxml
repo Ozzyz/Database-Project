@@ -9,12 +9,12 @@
 <GridPane fx:controller="sample.sessionController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" >
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="0">Program: </Label>
-    <ComboBox id="program" GridPane.columnIndex="1" GridPane.rowIndex="0"></ComboBox>
+    <ComboBox id="programComboBox" GridPane.columnIndex="1" GridPane.rowIndex="0"></ComboBox>
     <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Varighet: </Label>
-    <TextField id="varighet" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Desimaltall"></TextField>
+    <TextField id="varighet" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Desimaltall"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Dato: </Label>
-    <DatePicker id="dato" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="dd.mm.åååå"></DatePicker>
+    <DatePicker id="dato" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="dd.mm.åååå"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Formål: </Label>
     <TextArea id="formål" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Skriv her..."></TextArea>
@@ -24,6 +24,12 @@
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="5" text="Avbryt" onAction="#backButtonClicked"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="5" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
+
+    <TextArea id="formål" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Desimaltall"></TextArea>
+
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Avbryt" onAction="#backButtonClicked"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="4" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
 
 
 </GridPane>
