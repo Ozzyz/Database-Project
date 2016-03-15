@@ -22,8 +22,12 @@
             GridPane.columnIndex="1"
             GridPane.rowIndex="3"
             />
-    <Button text="Sjekk økt" onAction="#viewButtonClicked"
+    <Button text="Legg til ny muskelgruppe" onAction="#addNewGroupButtonClicked"
             GridPane.columnIndex="1"
             GridPane.rowIndex="4"
+    />
+    <Button text="Sjekk økt" onAction="#viewButtonClicked"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="5"
     />
 </GridPane>
