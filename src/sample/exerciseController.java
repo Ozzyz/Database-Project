@@ -20,7 +20,7 @@ public class exerciseController extends SceneController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle res) {
-        ArrayList<String> exercises = dbh.getExerciseNames();
+        ArrayList<String> exercises = dbh.getMuscleGroupNames();
         ObservableList<String> list = FXCollections.observableList(exercises);
         gruppeComboBox.setItems(list);
     }
