@@ -13,14 +13,19 @@
 <?import javafx.scene.control.TextField?>
 <GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/null" fx:controller="sample.sessionInfoController">
 
-    <ComboBox fx:id="exerciseComboBox"/>
-    <TextField/>
-    <TextField/>
-    <TextField/>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Øvelse: "/>
+    <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="exerciseComboBox" promptText="Velg"/>
 
-    <Pane GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <Button onAction="#backButtonClickd" text="Avbryt" />
-        <Button layoutX="100.0" onAction="#registerButtonClicked" text="Registrer" />
-    </Pane>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Antal sett: "/>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="sett" promptText="Heltall"/>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Antal reps: "/>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="reps" promptText="Heltall"/>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Vekt: "/>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="vekt" promptText="Desimaltall"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#backButtonClickd" text="Avbryt" />
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="4" onAction="#registerButtonClicked" text="Registrer" />
 
 </GridPane>
