@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import db.DBHandler;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
  * Created by Ozzy on 14.03.2016.
  */
 public class SceneController {
-
+    DBHandler dbh = new DBHandler();
     public void changeScene(String fxml_resource, ActionEvent evt) throws IOException {
 
         // Change scene to where we register session

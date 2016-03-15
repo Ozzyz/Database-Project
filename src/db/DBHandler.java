@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DBHandler {
-    private Connection conn;
+
+    private static Connection conn;
+    public DBHandler(){
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","example");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static ResultSet getTables(DatabaseMetaData dbmd) throws SQLException{
         return dbmd.getTables(null, null, null, null);
     }
@@ -46,7 +56,7 @@ public class DBHandler {
         }
     }
 
-    public ArrayList<String> getProgramNames() throws SQLException {
+    public static ArrayList<String> getProgramNames() throws SQLException {
         PreparedStatement ps = conn.prepareStatement("select Navn from Program");
         ArrayList<String> programNames = new ArrayList<>();
         ResultSet res = ps.executeQuery();
@@ -57,7 +67,7 @@ public class DBHandler {
         return programNames;
     }
 
-    public ArrayList<String> getExerciseNames() throws SQLException {
+    public static ArrayList<String> getExerciseNames() throws SQLException {
         PreparedStatement ps = conn.prepareStatement("select Navn from Øvelse");
         ArrayList<String> exerciseNames = new ArrayList<>();
         ResultSet res = ps.executeQuery();
@@ -68,7 +78,7 @@ public class DBHandler {
         return exerciseNames;
     }
 
-    public ArrayList<String> getMuscleGroupNames() throws SQLException {
+    public static ArrayList<String> getMuscleGroupNames() throws SQLException {
         PreparedStatement ps = conn.prepareStatement("select MuskelGruppe from Gruppe");
         ArrayList<String> muscleGroupNames = new ArrayList<>();
         ResultSet res = ps.executeQuery();
@@ -95,32 +105,15 @@ public class DBHandler {
         else return false;
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Connection conn = null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","example");
-            Statement sqlState = conn.createStatement();
-            DatabaseMetaData dbmd = conn.getMetaData();
-
-
-        }
-
-        catch (SQLException ex) {
-
-            // String describing the error
-
-            System.out.println("SQLException: " + ex.getMessage());
-
-            // Vendor specific error code
-
-            System.out.println("VendorError: " + ex.getErrorCode());
-        }
-
-        catch (ClassNotFoundException e) {
-            // Executes if the driver can't be found
+        DBHandler dbh = new DBHandler();
+        ArrayList<String> list = null;
+        try {
+            list = getProgramNames();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        for (String s: list) {
+            System.out.println(s);
+        }
     }
 }
