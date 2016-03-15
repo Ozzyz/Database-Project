@@ -241,13 +241,14 @@ public class DBHandler {
         ArrayList<String> exerciseNames = new ArrayList<>();
         try{
 
-            PreparedStatement ps = conn.prepareStatement("select Øvelse_Navn from programøvelse where Program_ProgramID = ?");
+            PreparedStatement ps = conn.prepareStatement("select * from programøvelse where Program_ProgramID = ?");
             ps.setInt(1, programID);
             ResultSet res = ps.executeQuery();
-            while(res.next()){
-                exerciseNames.add(res.getString("Øvelse_Navn"));
-            }
 
+            while(res.next()){
+                exerciseNames.add(res.getString(0));
+            }
+            return exerciseNames;
         }catch (Exception e){
             System.err.println("Could not get Exercises by program ID!");
         }
@@ -303,6 +304,8 @@ public class DBHandler {
             ResultSet rs = stmt.executeQuery("SELECT ØktID , ProgramID FROM økt WHERE(ØktID=(SELECT max(ØktID) FROM økt))");
             ArrayList<Integer> liste = new ArrayList<Integer>();
             if(rs.next()){
+                System.out.println("Øktid: " +rs.getInt("ØktID"));
+                System.out.println("ProgramID: "+ rs.getInt("ProgramID"));
                 liste.add(rs.getInt("ØktID"));
                 liste.add(rs.getInt("ProgramID"));
             }
@@ -311,6 +314,21 @@ public class DBHandler {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public int getProgramIDBySessionID(int sessionID){
+        int programID = -1;
+        try {
+            PreparedStatement ps = conn.prepareStatement("select programID from Økt where ØktID = ?");
+            ps.setInt(1, sessionID);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                System.out.println("Res PROGRAMID : " + res.getInt("programID"));
+                programID = res.getInt("programID");
+            }
+
+        }catch (Exception e){ e.printStackTrace();}
+        return programID;
     }
 
     public void leggTilUtførelse(int rep, int set, int vekt, int økt_øktID, String øvelsenavn){

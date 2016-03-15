@@ -13,6 +13,7 @@
     <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Velg økt"/>
 
     <ListView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="sessionListView" onMouseClicked="#listViewClicked"/>
+    <ListView GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="exerciseListView" onMouseClicked="#exerciseListViewClicked"/>
     <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="40">
         <Label text="Reps:" />
         <Label text="Sett:" />

@@ -54,11 +54,11 @@ public class sessionController extends SceneController implements Initializable{
         Double varighet = Double.parseDouble(this.varighet.getCharacters().toString());
         String formål = this.formål.getText();
         String notat = this.notat.getText();
-
+        String programNavn = programComboBox.getSelectionModel().getSelectedItem();
         Date date = dbh.stringToDateConverter(dato);
         System.out.println(date.toString());
 
-        //dbh.leggTilØkt(formål, varighet, date, notat, 1);
+        dbh.leggTilØkt(formål, varighet, date, notat, programNavn);
 
 
         try{

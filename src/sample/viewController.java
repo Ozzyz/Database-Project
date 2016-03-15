@@ -23,6 +23,7 @@ public class viewController extends SceneController implements Initializable{
     public TextArea weightTextArea;
     public TextArea notatTextArea;
     public TextArea formålTextArea;
+    public ListView exerciseListView;
     @FXML
     ListView<String> sessionListView;
     @FXML
@@ -45,12 +46,26 @@ public class viewController extends SceneController implements Initializable{
         String selectedItem = sessionListView.getSelectionModel().getSelectedItem();
         // Formål and Notat should be updated
         String[] a = selectedItem.split("\\."); // Items are on the form sessionID. Date
-        String sessionID = a[0];
+        int sessionID = Integer.parseInt(a[0]);
+
         System.out.println("SessionID" + sessionID);
-        ArrayList<String> sessionData = dbh.getSessionFormAndNotes(Integer.parseInt(sessionID));
+        ArrayList<String> sessionData = dbh.getSessionFormAndNotes(sessionID);
         formålTextArea.setText(sessionData.get(0));
         notatTextArea.setText(sessionData.get(1));
-        // When a session is clicked, we need to populate the combobox with all exercise that was done in the session
+        // When a session is clicked, we need to populate the other listview with all exercises that were done in the session
+        // Find out what program we are doing this session
+        int programID = dbh.getProgramIDBySessionID(sessionID);
+        System.out.println("ProgramID: " + programID);
+        // Get the exercises we are doing
+        ArrayList<String> exercises = dbh.getExercisesByProgramID(programID);
+        // Populate the listview
+        System.out.println(exercises.size());
+        populateListView(exercises, exerciseListView);
+
+    }
+
+    public void exerciseListViewClicked(Event event) {
+        // Get reps and set results from db, add them to the appropriate text areas
 
     }
 }
