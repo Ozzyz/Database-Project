@@ -18,8 +18,6 @@ public class viewController extends SceneController implements Initializable{
     @FXML
     ListView<String> sessionListView;
     @FXML
-    ListView<String> exerciseListView;
-    @FXML
     TableView<String> infoTableView;
 
     public void backButtonClickd(ActionEvent actionEvent) {
@@ -34,7 +32,6 @@ public class viewController extends SceneController implements Initializable{
         liste.add("Item2");
         liste.add("Item3");
         super.populateListView(liste, sessionListView);
-        super.populateListView(liste, exerciseListView);
     }
 
 

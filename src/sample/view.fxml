@@ -5,15 +5,27 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextArea?>
 <GridPane fx:controller="sample.viewController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Velg økt"/>
-    <Label GridPane.columnIndex="1" GridPane.rowIndex="0" text="Velg øvelse"/>
 
     <ListView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="sessionListView"/>
-    <ListView GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="exerciseListView"/>
-    <TableView GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="infoTableView"/>
+    <TableView GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="infoTableView">
+            <columns>
+                <TableColumn text="Øvelse"/>
+                <TableColumn text="Sett"/>
+                <TableColumn text="Reps"/>
+            </columns>
+    </TableView>
 
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Tilbake" onAction="#backButtonClickd"/>
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Notat:"/>
+    <TextArea GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150" prefHeight="50" fx:id="notatTextArea" editable="false"/>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Formål: "/>
+    <TextArea GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="150" prefHeight="50" fx:id="formålTextArea" editable="false"/>
+
+    <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Tilbake" onAction="#backButtonClickd"/>
 
 </GridPane>

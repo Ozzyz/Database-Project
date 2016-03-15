@@ -40,10 +40,7 @@ public class sessionController extends SceneController implements Initializable{
     }
 
     public void populateComboBox(){
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Item1");
-        list.add("Item2");
-        list.add("Item3");
+        ArrayList<String> list = dbh.getProgramNames();
         ObservableList<String> obList = FXCollections.observableList(list);
         programComboBox.setItems(obList);
     }
