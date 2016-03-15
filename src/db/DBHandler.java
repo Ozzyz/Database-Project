@@ -15,36 +15,50 @@ public class DBHandler {
 
     }
 
-    public ResultSet getTables(DatabaseMetaData dbmd){
-        try {
-            return dbmd.getTables(null, null, null, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    public ResultSet getColums(String tableName, DatabaseMetaData dbmd){
+    public void leggTilProgram(String navn){
         try {
-            return dbmd.getColumns(null, null, tableName, null);
-        } catch (SQLException e) {
+            if(!checkIfInDB(conn,"program","navn",navn)){
+                PreparedStatement ps = conn.prepareStatement("INSERT INTO program(navn) VALUES(?)");
+                ps.setString(1, navn);
+                ps.executeUpdate();
+            }
+        }catch (Exception e){
             e.printStackTrace();
-            return null;
         }
 
     }
-    public void leggTilProgram(Connection conn,String navn){
+
+    //øvelse må finnes i database før metode under kan kjøres.
+    public void setUpProgramØvelse(String programNavn, ArrayList<String> øvelsernavn){
+        try {
+            leggTilProgram(programNavn);
+            PreparedStatement ps = conn.prepareStatement("SELECT ProgramID From program Where navn=?");
+            ps.setString(1, programNavn);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int programID = rs.getInt("ProgramID");
+                for (String øvelsenavn : øvelsernavn) {
+                    leggTilProgramØvelse(programID, øvelsenavn);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void leggTilProgramØvelse(int programID, String øvelseNavn){
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("INSERT INTO program(navn) VALUES(?)");
-            ps.setString(1, navn);
+            ps = conn.prepareStatement("Insert INTO programØvelse VALUES(?,?)");
+            ps.setInt(1, programID);
+            ps.setString(2, øvelseNavn);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-    public void leggTilGruppe(Connection conn,String muskelgruppe, String tilhører){
+
+    public void leggTilGruppe(String muskelgruppe, String tilhører){
         try {
             if ((tilhører != null) && !checkIfInDB(conn, "gruppe", "muskelgruppe", tilhører)) {
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe(muskelgruppe,Gruppe_GruppeID) VALUES(?,?)");
