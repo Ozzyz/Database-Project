@@ -161,11 +161,11 @@ public class DBHandler {
 
     public ArrayList<String> getSessionNames(){
         try{
-            PreparedStatement ps = conn.prepareStatement("select (ØktID, Dato) from Økt");
+            PreparedStatement ps = conn.prepareStatement("select ØktID, Dato from Økt");
             ArrayList<String> sessionNames = new ArrayList<>();
             ResultSet res = ps.executeQuery();
             while(res.next()){
-                sessionNames.add(res.findColumn("ØktID")+ ". "+ res.findColumn("Dato"));
+                sessionNames.add(res.getInt("ØktID")+ ". "+ res.getDate("Dato").toString());
             }
             return sessionNames;
         }catch (Exception e){
@@ -233,4 +233,44 @@ public class DBHandler {
         return false;
     }
 
+    public ArrayList<String> getExercisesByProgramID(int programID){
+        ArrayList<String> exerciseNames = new ArrayList<>();
+        try{
+
+            PreparedStatement ps = conn.prepareStatement("select Øvelse_Navn from programøvelse where Program_ProgramID = ?");
+            ps.setInt(1, programID);
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+                exerciseNames.add(res.getString("Øvelse_Navn"));
+            }
+
+        }catch (Exception e){
+            System.err.println("Could not get Exercises by program ID!");
+        }
+        return exerciseNames;
+    }
+
+    //greia er at denne returnerer en arrayliste med arrayer
+    public ArrayList<String[]> getØktData(int øktID){
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT repetisjoner,sett,vekt,øvelse_navn FROM økt"
+                    + " INNER JOIN utførelse ON økt.øktID=utførelse.økt_øktID WHERE øktID=? ");
+            ps.setInt(1,øktID);
+            ArrayList<String[]> listWithArrays = new ArrayList<String[]>();
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String[] array= new String[4];
+                array[0]=rs.getString("øvelse_navn");
+                array[1]=Integer.toString(rs.getInt("sett"));
+                array[2]=Integer.toString(rs.getInt("repetisjoner"));
+                array[3]=Integer.toString(rs.getInt("vekt"));
+                listWithArrays.add(array);
+            }
+            return listWithArrays;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

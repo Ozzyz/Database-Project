@@ -28,7 +28,6 @@ public class viewController extends SceneController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         //TODO Fetch data from db
         ArrayList<String> sessionNames = dbh.getSessionNames();
-
         super.populateListView(sessionNames, sessionListView);
     }
 
