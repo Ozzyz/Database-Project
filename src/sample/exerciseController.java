@@ -30,8 +30,6 @@ public class exerciseController extends SceneController implements Initializable
     public void registerExercise(ActionEvent actionEvent) {
         String exercisename = exerciseName.getText();
         String selectedMuscleGroup = gruppeComboBox.getSelectionModel().getSelectedItem();
-
-
-
+        dbh.leggTilØvelse(exercisename, selectedMuscleGroup);
     }
 }
