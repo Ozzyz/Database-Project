@@ -1,13 +1,8 @@
 package db;
-
-        import java.sql.*;
-        import java.util.ArrayList;
-        import java.util.Scanner;
+import java.sql.*;
+import java.util.Scanner;
 
 public class DBHandler {
-    static private int gruppeID; // variablelene skal incrementeres for hver gang en nytt objekt blir satt inn
-    static private int programID;
-    static private int øktID;
 
     public static ResultSet getTables(DatabaseMetaData dbmd) throws SQLException{
         return dbmd.getTables(null, null, null, null);
@@ -16,32 +11,42 @@ public class DBHandler {
         return dbmd.getColumns(null, null, tableName, null);
     }
     public static void leggTilProgram(Connection conn,String navn) throws SQLException{
-        programID++;
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO program VALUES("+'"'+programID+'"'+",?)");
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO program(navn) VALUES(?)");
         ps.setString(1, navn);
         ps.executeUpdate();
-
     }
     public static void leggTilGruppe(Connection conn,String muskelgruppe, String tilhører) throws SQLException{
-        if(!checkIfInDB(conn,"gruppe","muskelgruppe",tilhører)){
-            gruppeID++;
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe VALUES("+'"'+gruppeID+'"'+",?)");
+        if((tilhører != null)&& !checkIfInDB(conn,"gruppe","muskelgruppe",tilhører)){
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe(muskelgruppe,Gruppe_GruppeID) VALUES(?,?)");
             ps.setString(1, tilhører);
             ps.setNull(2, java.sql.Types.INTEGER);//ikke ferdig
             ps.executeUpdate();
         }
         if(!checkIfInDB(conn,"gruppe","muskelgruppe",muskelgruppe)){
-            gruppeID++;
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe VALUES("+'"'+gruppeID+'"'+",?,?)");
-            ps.setString(1, muskelgruppe);
-            ps.setString(2, tilhører);
-            ps.executeUpdate();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("Select GruppeID FROM gruppe WHERE muskelgruppe="+'"'+tilhører+'"');
+            int tilhørergruppe;
+            if(rs.next()){
+                tilhørergruppe = rs.getInt("GruppeID");
+                PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe(muskelgruppe, Gruppe_GruppeID) VALUES(?,?)");
+                ps.setString(1, muskelgruppe);
+                ps.setInt(2, tilhørergruppe);
+                ps.executeUpdate();
+            }
+            else{
+                PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe(muskelgruppe, Gruppe_GruppeID) VALUES(?,?)");
+                ps.setString(1, muskelgruppe);
+                ps.setNull(2, java.sql.Types.INTEGER);
+                ps.executeUpdate();
+            }
         }
         else{
             System.out.println("finnes i databasen");
         }
     }
-    public static void getMuskelGruppe(Connection conn, String muskelgruppe ){
+    public static ResultSet getAllRowsFromTable(Connection conn,String table) throws SQLException{
+        Statement stmt = conn.createStatement();
+        return stmt.executeQuery("SELECT * FROM "+table);
 
     }
     public static boolean checkIfInDB(Connection conn,String table, String column, String tuplevalue) throws SQLException{
@@ -61,7 +66,7 @@ public class DBHandler {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","raspberry");
             Statement sqlState = conn.createStatement();
             DatabaseMetaData dbmd = conn.getMetaData();
-            leggTilGruppe(conn,"legger","0");
+            leggTilGruppe(conn,"finger",null);
 
         }
 

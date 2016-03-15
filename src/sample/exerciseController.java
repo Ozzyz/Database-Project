@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,8 +15,8 @@ import java.util.ResourceBundle;
 
 public class exerciseController extends SceneController implements Initializable {
 
-    @FXML
-    ComboBox<String> gruppeComboBox;
+    @FXML TextField exerciseName;
+    @FXML ComboBox<String> gruppeComboBox;
 
     @Override
     public void initialize(URL url, ResourceBundle res) {
@@ -34,5 +35,8 @@ public class exerciseController extends SceneController implements Initializable
     }
 
     public void registerExercise(ActionEvent actionEvent) {
+        String exercisename = exerciseName.getText();
+        String selectedMuscleGroup = gruppeComboBox.getSelectionModel().getSelectedItem();
+        // TODO: Pass this data to DBHandler
     }
 }
