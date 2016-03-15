@@ -22,4 +22,8 @@
             GridPane.columnIndex="1"
             GridPane.rowIndex="3"
             />
+    <Button text="Sjekk økt" onAction="#viewButtonClicked"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="4"
+    />
 </GridPane>
