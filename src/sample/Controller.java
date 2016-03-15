@@ -50,4 +50,12 @@ public class Controller extends SceneController{
             e.printStackTrace();
         }
     }
+
+    public void addNewGroupButtonClicked(ActionEvent actionEvent) {
+        try {
+            changeScene("muskelgruppe.fxml", actionEvent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
