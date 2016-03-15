@@ -20,6 +20,8 @@ public class DBHandler {
         }
 
     }
+
+
     public void leggTilØkt(String formål, double varighet, Date date, String notat, int programID){
         try {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO økt(Formål,Varighet,Dato,Notat,ProgramID) VALUES(?,?,?,?,?)");
@@ -36,7 +38,7 @@ public class DBHandler {
 
     }
     //konverter en String til java.sql.Date
-    public static java.sql.Date stringToDateConverter(String string){
+    public java.sql.Date stringToDateConverter(String string){
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date parsed = null;
         try {
