@@ -63,10 +63,10 @@ public class DBHandler {
         Connection conn = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","raspberry");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","example");
             Statement sqlState = conn.createStatement();
             DatabaseMetaData dbmd = conn.getMetaData();
-            leggTilGruppe(conn,"finger",null);
+
 
         }
 

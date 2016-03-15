@@ -3,21 +3,27 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <GridPane fx:controller="sample.programController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="2" vgap="10" >
     <!--  TODO: One box where all exercises are listed, arrows to move an exercise over to the program    -->
-    <Button GridPane.columnIndex="0" GridPane.rowIndex="0" text="Avbryt" onAction="#backButtonClicked"/>
+    <Label text="Programnavn:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <TextField promptText="Programnavn" fx:id="programNameTextField"
         GridPane.rowIndex="0"
                GridPane.columnIndex="1"
     />
-    <ListView fx:id="exerciseListView" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <ListView fx:id="programListView" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-    <Button text="---|=" GridPane.columnIndex="2" GridPane.rowIndex="1"
-        onAction="#addExerciseButtonClicked"
-    />
-    <Button text="=|---" GridPane.columnIndex="2" GridPane.rowIndex="2"
-        onAction="#removeExerciseButtonClicked"
-            />
-    <Button text="Lagre" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#saveButtonClicked"/>
-
+    <ListView fx:id="exerciseListView" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="150" />
+    <ListView fx:id="programListView" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="150" prefHeight="350"/>
+    <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" prefWidth="100">
+        <Button text="&#8680;"
+                onAction="#addExerciseButtonClicked" prefWidth="50" style="-fx-font-size: 20"
+        />
+        <Button text="&#8678;"
+                onAction="#removeExerciseButtonClicked" prefWidth="50" style="-fx-font-size: 20"
+        />
+    </VBox>
+    <HBox  GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="10">
+    <Button text="Lagre"  onAction="#saveButtonClicked"/>
+    <Button text="Avbryt" onAction="#backButtonClicked"/>
+    </HBox>
 </GridPane>
