@@ -1,9 +1,10 @@
 package db;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DBHandler {
-
+    private Connection conn;
     public static ResultSet getTables(DatabaseMetaData dbmd) throws SQLException{
         return dbmd.getTables(null, null, null, null);
     }
@@ -44,6 +45,41 @@ public class DBHandler {
             System.out.println("finnes i databasen");
         }
     }
+
+    public ArrayList<String> getProgramNames() throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("select Navn from Program");
+        ArrayList<String> programNames = new ArrayList<>();
+        ResultSet res = ps.executeQuery();
+
+        while(res.next()){
+            programNames.add(res.getString("Navn"));
+        }
+        return programNames;
+    }
+
+    public ArrayList<String> getExerciseNames() throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("select Navn from Øvelse");
+        ArrayList<String> exerciseNames = new ArrayList<>();
+        ResultSet res = ps.executeQuery();
+
+        while(res.next()){
+            exerciseNames.add(res.getString("Navn"));
+        }
+        return exerciseNames;
+    }
+
+    public ArrayList<String> getMuscleGroupNames() throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("select MuskelGruppe from Gruppe");
+        ArrayList<String> muscleGroupNames = new ArrayList<>();
+        ResultSet res = ps.executeQuery();
+
+        while(res.next()){
+            muscleGroupNames.add(res.getString("MuskelGruppe"));
+        }
+        return muscleGroupNames;
+    }
+
+
     public static ResultSet getAllRowsFromTable(Connection conn,String table) throws SQLException{
         Statement stmt = conn.createStatement();
         return stmt.executeQuery("SELECT * FROM "+table);
