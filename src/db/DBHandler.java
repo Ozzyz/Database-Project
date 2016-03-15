@@ -39,7 +39,7 @@ public class DBHandler {
     }
     //konverter en String til java.sql.Date
     public java.sql.Date stringToDateConverter(String string){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsed = null;
         try {
             parsed = sdf.parse(string);

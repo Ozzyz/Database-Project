@@ -9,12 +9,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.*;
+import java.sql.Date;
 
 /**
  * Created by Ozzy on 14.03.2016.
@@ -51,19 +48,18 @@ public class sessionController extends SceneController implements Initializable{
     }
 
     public void nextButtonClicked(ActionEvent actionEvent) {
-        // Get all selected items
-        LocalDate dato = this.dato.getValue();
+
+        String dato = this.dato.getValue().toString();
         String program = programComboBox.getValue();
         Double varighet = Double.parseDouble(this.varighet.getCharacters().toString());
         String formål = this.formål.getText();
         String notat = this.notat.getText();
 
-        // TODO: Write stuff to the database
-        System.out.println("Dato: " + dato);
-        System.out.println("Program: " + program);
-        System.out.println("Varighet: " + varighet);
-        System.out.println("Formål:" + formål);
-        System.out.println("Notat: " + notat);
+        Date date = dbh.stringToDateConverter(dato);
+        System.out.println(date.toString());
+
+        dbh.leggTilØkt(formål, varighet, date, notat, 1);
+
 
         try{
             changeScene("sessionInfo.fxml", actionEvent);
