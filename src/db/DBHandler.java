@@ -22,8 +22,12 @@ public class DBHandler {
     }
 
 
-    public void leggTilØkt(String formål, double varighet, Date date, String notat, int programID){
+    public void leggTilØkt(String formål, double varighet, Date date, String notat, String programNavn){
         try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ProgramID FROM Program WHERE Navn= "+'"'+programNavn+'"');
+            rs.next();
+            int programID  = rs.getInt("ProgramID");
             PreparedStatement ps = conn.prepareStatement("INSERT INTO økt(Formål,Varighet,Dato,Notat,ProgramID) VALUES(?,?,?,?,?)");
             float Varighet = (float) varighet;
             ps.setString(1, formål);
