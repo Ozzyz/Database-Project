@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 public class SceneController {
     DBHandler dbh = new DBHandler();
+
     public void changeScene(String fxml_resource, ActionEvent evt) throws IOException {
 
         // Change scene to where we register session
@@ -36,8 +37,9 @@ public class SceneController {
         }
     }
 
-    public void populateListView(ArrayList<String> list, ListView<String> listView){
+    public ObservableList<String> populateListView(ArrayList<String> list, ListView<String> listView){
         ObservableList<String> obList = FXCollections.observableList(list);
         listView.setItems(obList);
+        return obList;
     }
 }

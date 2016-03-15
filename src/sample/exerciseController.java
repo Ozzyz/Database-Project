@@ -20,19 +20,12 @@ public class exerciseController extends SceneController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle res) {
-        populateComboBox();
+        ArrayList<String> exercises = dbh.getExerciseNames();
+        ObservableList<String> list = FXCollections.observableList(exercises);
+        gruppeComboBox.setItems(list);
     }
 
-    public void populateComboBox(){
-        // TODO: Make DBHandler populate the combobox with saved exercises
 
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Item1");
-        list.add("Item2");
-        list.add("Item3");
-        ObservableList<String> obList = FXCollections.observableList(list);
-        gruppeComboBox.setItems(obList);
-    }
 
     public void registerExercise(ActionEvent actionEvent) {
         String exercisename = exerciseName.getText();

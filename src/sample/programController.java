@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -19,27 +21,27 @@ public class programController extends SceneController implements Initializable{
     @FXML public ListView programListView;
     public TextField programNameTextField;
     @FXML ListView<String> exerciseListView;
-    ObservableList<String> ExerciseItems = FXCollections.observableArrayList (
-            "Test1", "Test2", "ASD", "123");
-    ObservableList<String> ProgramItems = FXCollections.observableArrayList();
+    ObservableList<String> ExerciseItems;
+    ObservableList<String> ProgramItems;
 
-    public void populateListView(){
-        //TODO: This should be done by db-handler
-        exerciseListView.setItems(ExerciseItems);
-        programListView.setItems(ProgramItems);
-    }
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Here we will fetch data from db
-        populateListView();
+        ArrayList<String> exercises = dbh.getProgramNames();
+        ExerciseItems = populateListView(exercises, exerciseListView);
+        ProgramItems = populateListView(new ArrayList<>(), programListView);
+
     }
 
     public void addExerciseButtonClicked(ActionEvent actionEvent) {
         // Get what item the user has selected
         String selectedItem = exerciseListView.getSelectionModel().getSelectedItem();
         if(selectedItem != null) {
+            System.out.println(selectedItem);
             ExerciseItems.remove(selectedItem);
             ProgramItems.add(selectedItem);
         }
