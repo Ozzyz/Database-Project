@@ -20,7 +20,7 @@ public class DBHandler {
         }
 
     }
-    public static void leggTilØkt(String formål, double varighet, Date date, String notat, int programID){
+    public void leggTilØkt(String formål, double varighet, Date date, String notat, int programID){
         try {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO økt(Formål,Varighet,Dato,Notat,ProgramID) VALUES(?,?,?,?,?)");
             float Varighet = (float) varighet;
