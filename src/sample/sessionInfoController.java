@@ -31,7 +31,7 @@ public class sessionInfoController extends SceneController implements Initializa
     @Override
     public void initialize(URL location, ResourceBundle resources){
         int programID = dbh.latestSession().get(1);
-        System.out.println(programID);
+
         ArrayList<String> exercises = dbh.getExercisesByProgramID(programID);
         ObservableList<String> list = FXCollections.observableList(exercises);
         System.out.println("Length of list:" + list.size());

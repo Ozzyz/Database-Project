@@ -241,12 +241,12 @@ public class DBHandler {
         ArrayList<String> exerciseNames = new ArrayList<>();
         try{
 
-            PreparedStatement ps = conn.prepareStatement("select * from programøvelse where Program_ProgramID = ?");
+            PreparedStatement ps = conn.prepareStatement("select Øvelse_Navn as l from programøvelse where Program_ProgramID = ?");
             ps.setInt(1, programID);
             ResultSet res = ps.executeQuery();
 
             while(res.next()){
-                exerciseNames.add(res.getString(0));
+                exerciseNames.add(res.getString("l"));
             }
             return exerciseNames;
         }catch (Exception e){
