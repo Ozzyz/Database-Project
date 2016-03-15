@@ -278,6 +278,25 @@ public class DBHandler {
         return null;
     }
 
+    public ArrayList<String> getSessionFormAndNotes(int sessionID){
+        ArrayList<String> data = new ArrayList<>();
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement("select Formål, Notat from Økt where ØktID = ?");
+            ps.setInt(1, sessionID);
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+                System.out.println(res.getString("Formål"));
+                data.add(res.getString("Formål"));
+                data.add(res.getString("Notat"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+
+    }
+
     public ArrayList<Integer> latestSession(){
         try {
             Statement stmt = conn.createStatement();
@@ -292,6 +311,19 @@ public class DBHandler {
             e.printStackTrace();
             return null;
         }
+    }
 
+    public void leggTilUtførelse(int rep, int set, int vekt, int økt_øktID, String øvelsenavn){
+        try{
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO utførelse VALUES(?,?,?,?,?)");
+            ps.setInt(1, rep);
+            ps.setInt(2, set);
+            ps.setInt(3, vekt);
+            ps.setInt(4, økt_øktID);
+            ps.setString(5, øvelsenavn);
+            ps.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

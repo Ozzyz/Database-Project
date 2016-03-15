@@ -58,7 +58,7 @@ public class sessionController extends SceneController implements Initializable{
         Date date = dbh.stringToDateConverter(dato);
         System.out.println(date.toString());
 
-        dbh.leggTilØkt(formål, varighet, date, notat, 1);
+        //dbh.leggTilØkt(formål, varighet, date, notat, 1);
 
 
         try{

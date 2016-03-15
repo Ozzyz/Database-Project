@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -20,6 +21,8 @@ public class viewController extends SceneController implements Initializable{
     public TextArea repTextArea;
     public TextArea setTextArea;
     public TextArea weightTextArea;
+    public TextArea notatTextArea;
+    public TextArea formålTextArea;
     @FXML
     ListView<String> sessionListView;
     @FXML
@@ -41,6 +44,12 @@ public class viewController extends SceneController implements Initializable{
     public void listViewClicked(Event event) {
         String selectedItem = sessionListView.getSelectionModel().getSelectedItem();
         // Formål and Notat should be updated
+        String[] a = selectedItem.split("\\."); // Items are on the form sessionID. Date
+        String sessionID = a[0];
+        System.out.println("SessionID" + sessionID);
+        ArrayList<String> sessionData = dbh.getSessionFormAndNotes(Integer.parseInt(sessionID));
+        formålTextArea.setText(sessionData.get(0));
+        notatTextArea.setText(sessionData.get(1));
         // When a session is clicked, we need to populate the combobox with all exercise that was done in the session
 
     }

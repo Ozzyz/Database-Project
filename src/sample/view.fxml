@@ -21,8 +21,7 @@
     </VBox>
     <VBox  GridPane.rowIndex="1" GridPane.columnIndex="2">
         <TextArea prefWidth="150" prefHeight="50" fx:id="repTextArea" editable="false"/>
-        <TextArea prefWidth="150" prefHeight="50" fx:id="setText
-        Area" editable="false"/>
+        <TextArea prefWidth="150" prefHeight="50" fx:id="setTextArea" editable="false"/>
         <TextArea prefWidth="150" prefHeight="50" fx:id="weightTextArea" editable="false"/>
     </VBox>
 
