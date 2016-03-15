@@ -1,8 +1,10 @@
 package db;
+import com.mysql.jdbc.SQLError;
 import javafx.application.Application;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
 
 public class DBHandler {
@@ -125,10 +127,8 @@ public class DBHandler {
     }
 
     //må ha gruppe_gruppeID ellers så blir det en FK Error
-    public void leggTilØvelse(String navnØvelse, String navnGruppe){
+    public boolean leggTilØvelse(String navnØvelse, String navnGruppe){
         try {
-
-
             if (!checkIfInDB("øvelse", "navn", navnØvelse)) {
                 PreparedStatement ps = conn.prepareStatement("SELECT GruppeID FROM gruppe WHERE muskelgruppe =?");
                 ps.setString(1, navnGruppe);
@@ -138,8 +138,12 @@ public class DBHandler {
                     Statement stmt = conn.createStatement();
                     stmt.executeUpdate("INSERT INTO øvelse VALUES(" + '"' + navnØvelse + '"' + ", " + '"' + gruppeid + '"' + ")");
                 }
+                return true;
             }
-        }catch (Exception e){ e.printStackTrace();}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

@@ -6,14 +6,14 @@
 <GridPane fx:controller="sample.exerciseController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" >
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="0">Navn: </Label>
-    <TextField id="navn" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="exerciseName"/>
+    <TextField id="navn" GridPane.columnIndex="1" GridPane.rowIndex="0" fx:id="exerciseName" onTextChange="#updateWarningLabel"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Muskelgruppe: </Label>
     <ComboBox id="gruppe" fx:id="gruppeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="2" text="Avbryt" onAction="#backButtonClicked"/>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Registrer" onAction="#registerExercise"/>
-
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" text="test" visible="false" fx:id="successLabel"/>
 
 
 </GridPane>
