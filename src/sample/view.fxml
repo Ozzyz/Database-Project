@@ -14,22 +14,22 @@
 
     <ListView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="sessionListView" onMouseClicked="#listViewClicked"/>
     <ListView GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="exerciseListView" onMouseClicked="#exerciseListViewClicked"/>
-    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="40">
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="2" spacing="40">
         <Label text="Reps:" />
         <Label text="Sett:" />
         <Label text="Vekt (kg)" />
 
     </VBox>
-    <VBox  GridPane.rowIndex="1" GridPane.columnIndex="2">
+    <VBox  GridPane.rowIndex="1" GridPane.columnIndex="3">
         <TextArea prefWidth="150" prefHeight="50" fx:id="repTextArea" editable="false"/>
         <TextArea prefWidth="150" prefHeight="50" fx:id="setTextArea" editable="false"/>
         <TextArea prefWidth="150" prefHeight="50" fx:id="weightTextArea" editable="false"/>
     </VBox>
 
-    <Label text="Formål: " GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-    <Label text="Notat:" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-    <TextArea prefWidth="150" prefHeight="50" fx:id="notatTextArea" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-    <TextArea prefWidth="150" prefHeight="50" fx:id="formålTextArea" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+    <Label text="Formål: " GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+    <Label text="Notat:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+    <TextArea prefWidth="150" prefHeight="50" fx:id="notatTextArea" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+    <TextArea prefWidth="150" prefHeight="50" fx:id="formålTextArea" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
     <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Tilbake" onAction="#backButtonClickd"/>
 
 </GridPane>

@@ -47,6 +47,9 @@ public class sessionInfoController extends SceneController implements Initializa
         sett.setText("");
         reps.setText("");
         vekt.setText("");
+        //Remove the exercise we registered from combobox
+        String selectedExercise = (String) exerciseComboBox.getSelectionModel().getSelectedItem();
+        exerciseComboBox.getItems().removeAll(selectedExercise);
         exerciseComboBox.getSelectionModel().clearSelection();
     }
 

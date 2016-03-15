@@ -29,6 +29,8 @@ public class viewController extends SceneController implements Initializable{
     @FXML
     TableView<String> infoTableView;
 
+    private int currentSelectedSession;
+
     public void backButtonClickd(ActionEvent actionEvent) {
         super.backButtonClicked(actionEvent);
     }
@@ -48,7 +50,10 @@ public class viewController extends SceneController implements Initializable{
         String[] a = selectedItem.split("\\."); // Items are on the form sessionID. Date
         int sessionID = Integer.parseInt(a[0]);
 
-        System.out.println("SessionID" + sessionID);
+        // Save sessionID so we can use it later
+        currentSelectedSession = sessionID;
+
+
         ArrayList<String> sessionData = dbh.getSessionFormAndNotes(sessionID);
         formålTextArea.setText(sessionData.get(0));
         notatTextArea.setText(sessionData.get(1));
@@ -67,5 +72,14 @@ public class viewController extends SceneController implements Initializable{
     public void exerciseListViewClicked(Event event) {
         // Get reps and set results from db, add them to the appropriate text areas
 
+        String selectedExercise = (String) exerciseListView.getSelectionModel().getSelectedItem();
+        System.out.println(currentSelectedSession);
+        System.out.println(selectedExercise);
+        ArrayList<String> results = dbh.getPerformance(currentSelectedSession, selectedExercise);
+        // The results are in order: Repetitions, Set, Weight
+        //Update the textfields
+        repTextArea.setText(results.get(0));
+        setTextArea.setText(results.get(1));
+        weightTextArea.setText(results.get(2));
     }
 }

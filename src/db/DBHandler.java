@@ -345,4 +345,20 @@ public class DBHandler {
         }
     }
 
+    public ArrayList<String> getPerformance(int sessionID, String exerciseName){
+        ArrayList<String> results = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("select Repetisjoner, Sett, Vekt from utførelse where Økt_ØktID = ? and Øvelse_Navn = ?");
+            ps.setInt(1, sessionID);
+            ps.setString(2, exerciseName);
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+                results.add(res.getString("Repetisjoner"));
+                results.add(res.getString("Sett"));
+                results.add(res.getString("Vekt"));
+            }
+        }catch (Exception e){e.printStackTrace();}
+        return results;
+    }
+
 }
