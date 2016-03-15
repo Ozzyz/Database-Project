@@ -33,6 +33,7 @@ public class DBHandler {
 
     //øvelse må finnes i database før metode under kan kjøres.
     public void setUpProgramØvelse(String programNavn, ArrayList<String> øvelsernavn){
+        // Legger til et nytt program med sett med øvelser
         try {
             leggTilProgram(programNavn);
             PreparedStatement ps = conn.prepareStatement("SELECT ProgramID From program Where navn=?");
@@ -123,7 +124,10 @@ public class DBHandler {
         return null;
     }
 
-    public ArrayList<String> getMuscleGroupNames() throws SQLException {
+
+
+    public ArrayList<String> getMuscleGroupNames(){
+        try{
         PreparedStatement ps = conn.prepareStatement("select MuskelGruppe from Gruppe");
         ArrayList<String> muscleGroupNames = new ArrayList<>();
         ResultSet res = ps.executeQuery();
@@ -132,6 +136,11 @@ public class DBHandler {
             muscleGroupNames.add(res.getString("MuskelGruppe"));
         }
         return muscleGroupNames;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

@@ -31,7 +31,7 @@ public class programController extends SceneController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Here we will fetch data from db
-        ArrayList<String> exercises = dbh.getProgramNames();
+        ArrayList<String> exercises = dbh.getExerciseNames();
         ExerciseItems = populateListView(exercises, exerciseListView);
         ProgramItems = populateListView(new ArrayList<>(), programListView);
 
@@ -58,14 +58,16 @@ public class programController extends SceneController implements Initializable{
     }
 
     public void saveButtonClicked(ActionEvent actionEvent) {
-        // TODO: Write stuff to the database
-
         // Get all selected items
         ObservableList selectedItems = programListView.getItems();
         String programName = programNameTextField.getText();
-
+        ArrayList<String> exerciseList = new ArrayList<>();
+        // Safely add all strings in selectedItems to exerciseList
         for(Object e: selectedItems){
-            System.out.println(e.toString());
+            exerciseList.add(e.toString());
         }
+        //write to db
+        dbh.setUpProgramØvelse(programName, exerciseList);
+        System.err.println("Wrote succesfully to the database!");
     }
 }
