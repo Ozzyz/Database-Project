@@ -27,11 +27,9 @@ public class viewController extends SceneController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO Fetch data from db
-        ArrayList<String> liste = new ArrayList<>();
-        liste.add("Item1");
-        liste.add("Item2");
-        liste.add("Item3");
-        super.populateListView(liste, sessionListView);
+        ArrayList<String> sessionNames = dbh.getSessionNames();
+
+        super.populateListView(sessionNames, sessionListView);
     }
 
 
