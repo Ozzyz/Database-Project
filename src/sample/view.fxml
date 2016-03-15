@@ -17,6 +17,7 @@
                 <TableColumn text="Øvelse"/>
                 <TableColumn text="Sett"/>
                 <TableColumn text="Reps"/>
+                <TableColumn text="Vekt"/>
             </columns>
     </TableView>
 

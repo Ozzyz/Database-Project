@@ -50,7 +50,7 @@ public class sessionController extends SceneController implements Initializable{
         super.backButtonClicked(evt);
     }
 
-    public void registerButtonClicked(ActionEvent actionEvent) {
+    public void nextButtonClicked(ActionEvent actionEvent) {
         // Get all selected items
         LocalDate dato = this.dato.getValue();
         String program = programComboBox.getValue();
@@ -64,5 +64,11 @@ public class sessionController extends SceneController implements Initializable{
         System.out.println("Varighet: " + varighet);
         System.out.println("Formål:" + formål);
         System.out.println("Notat: " + notat);
+
+        try{
+            changeScene("sessionInfo.fxml", actionEvent);
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 }
