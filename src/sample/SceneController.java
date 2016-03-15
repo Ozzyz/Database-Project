@@ -1,14 +1,18 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import db.DBHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Ozzy on 14.03.2016.
@@ -30,5 +34,10 @@ public class SceneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void populateListView(ArrayList<String> list, ListView<String> listView){
+        ObservableList<String> obList = FXCollections.observableList(list);
+        listView.setItems(obList);
     }
 }

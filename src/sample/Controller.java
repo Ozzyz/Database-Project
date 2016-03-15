@@ -50,9 +50,4 @@ public class Controller extends SceneController{
             e.printStackTrace();
         }
     }
-
-    public void populateListView(ArrayList<String> list, ListView<String> listView){
-        ObservableList<String> obList = FXCollections.observableList(list);
-        listView.setItems(obList);
-    }
 }

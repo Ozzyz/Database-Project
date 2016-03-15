@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class viewController extends Controller implements Initializable{
+public class viewController extends SceneController implements Initializable{
 
     @FXML
     ListView<String> sessionListView;
