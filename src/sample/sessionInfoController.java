@@ -19,6 +19,7 @@ public class sessionInfoController extends SceneController implements Initializa
     public TextField sett;
     public TextField reps;
     public TextField vekt;
+    private int currentSessionID;
 
     public void backButtonClickd(ActionEvent actionEvent) {
         super.backButtonClicked(actionEvent);
@@ -26,12 +27,35 @@ public class sessionInfoController extends SceneController implements Initializa
 
     public void registerButtonClicked(ActionEvent actionEvent) {
         //TODO Slette valgt øvelse og legge til data i utførelse i db
+        int set = Integer.parseInt(sett.getText());
+        int rep = Integer.parseInt(reps.getText());
+        int weight = Integer.parseInt(vekt.getText());
+        String selectedExercise = (String) exerciseComboBox.getSelectionModel().getSelectedItem();
+        if(selectedExercise.equals("Velg")){
+            // Show error label
+        }
+        else{
+            dbh.leggTilUtførelse(rep, set, weight, currentSessionID, selectedExercise);
+            // Show success label
+
+            //Reset all fields
+            resetInputFields();
+        }
+    }
+
+    public void resetInputFields(){
+        sett.setText("");
+        reps.setText("");
+        vekt.setText("");
+        exerciseComboBox.getSelectionModel().clearSelection();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        int programID = dbh.latestSession().get(1);
-
+        ArrayList<Integer> sessionInfo = dbh.latestSession();
+        int programID = sessionInfo.get(1);
+        int sessionID = sessionInfo.get(0);
+        currentSessionID = sessionID;
         ArrayList<String> exercises = dbh.getExercisesByProgramID(programID);
         ObservableList<String> list = FXCollections.observableList(exercises);
         System.out.println("Length of list:" + list.size());
