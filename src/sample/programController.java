@@ -34,7 +34,6 @@ public class programController extends SceneController implements Initializable{
         ArrayList<String> exercises = dbh.getExerciseNames();
         ExerciseItems = populateListView(exercises, exerciseListView);
         ProgramItems = populateListView(new ArrayList<>(), programListView);
-
     }
 
     public void addExerciseButtonClicked(ActionEvent actionEvent) {

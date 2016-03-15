@@ -20,7 +20,7 @@ public class DBHandler {
 
     public void leggTilProgram(String navn){
         try {
-            if(!checkIfInDB(conn,"program","navn",navn)){
+            if(!checkIfInDB("program","navn",navn)){
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO program(navn) VALUES(?)");
                 ps.setString(1, navn);
                 ps.executeUpdate();
@@ -63,13 +63,13 @@ public class DBHandler {
 
     public void leggTilGruppe(String muskelgruppe, String tilhører){
         try {
-            if ((tilhører != null) && !checkIfInDB(conn, "gruppe", "muskelgruppe", tilhører)) {
+            if ((tilhører != null) && !checkIfInDB("gruppe", "muskelgruppe", tilhører)) {
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO gruppe(muskelgruppe,Gruppe_GruppeID) VALUES(?,?)");
                 ps.setString(1, tilhører);
                 ps.setNull(2, java.sql.Types.INTEGER);//ikke ferdig
                 ps.executeUpdate();
             }
-            if (!checkIfInDB(conn, "gruppe", "muskelgruppe", muskelgruppe)) {
+            if (!checkIfInDB("gruppe", "muskelgruppe", muskelgruppe)) {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("Select GruppeID FROM gruppe WHERE muskelgruppe=" + '"' + tilhører + '"');
                 int tilhørergruppe;
@@ -124,6 +124,23 @@ public class DBHandler {
         return null;
     }
 
+    //må ha gruppe_gruppeID ellers så blir det en FK Error
+    public void leggTilØvelse(String navnØvelse, String navnGruppe){
+        try {
+
+
+            if (!checkIfInDB("øvelse", "navn", navnØvelse)) {
+                PreparedStatement ps = conn.prepareStatement("SELECT GruppeID FROM gruppe WHERE muskelgruppe =?");
+                ps.setString(1, navnGruppe);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int gruppeid = rs.getInt("GruppeID");
+                    Statement stmt = conn.createStatement();
+                    stmt.executeUpdate("INSERT INTO øvelse VALUES(" + '"' + navnØvelse + '"' + ", " + '"' + gruppeid + '"' + ")");
+                }
+            }
+        }catch (Exception e){ e.printStackTrace();}
+    }
 
 
     public ArrayList<String> getMuscleGroupNames(){
@@ -149,10 +166,10 @@ public class DBHandler {
         return stmt.executeQuery("SELECT * FROM "+table);
     }
 
-    public boolean checkIfInDB(Connection conn,String table, String column, String tuplevalue){
-        PreparedStatement ps = null;
+    public boolean checkIfInDB(String table, String column, String tuplevalue){
+
         try {
-            ps = conn.prepareStatement("SELECT * FROM "+table+" WHERE "+ column+"=?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM "+table+" WHERE "+ column+"=?");
             ps.setString(1, tuplevalue);
             ResultSet rs = ps.executeQuery();
             // Return if we got results
