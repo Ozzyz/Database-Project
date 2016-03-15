@@ -159,6 +159,22 @@ public class DBHandler {
         return null;
     }
 
+    public ArrayList<String> getSessionNames(){
+        try{
+            PreparedStatement ps = conn.prepareStatement("select (ØktID, Dato) from Økt");
+            ArrayList<String> sessionNames = new ArrayList<>();
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+                sessionNames.add(res.findColumn("ØktID")+ ". "+ res.findColumn("Dato"));
+            }
+            return sessionNames;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     //må ha gruppe_gruppeID ellers så blir det en FK Error
     public boolean leggTilØvelse(String navnØvelse, String navnGruppe){
         try {
