@@ -26,4 +26,6 @@
     <Button text="Lagre"  onAction="#saveButtonClicked"/>
     <Button text="Avbryt" onAction="#backButtonClicked"/>
     </HBox>
+
+    <Label GridPane.columnIndex="2" GridPane.rowIndex="3" text="test" visible="false" fx:id="successLabel"/>
 </GridPane>

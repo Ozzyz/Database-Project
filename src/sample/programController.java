@@ -1,10 +1,12 @@
 package sample;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -20,6 +22,7 @@ import java.util.ResourceBundle;
 public class programController extends SceneController implements Initializable{
     @FXML public ListView programListView;
     public TextField programNameTextField;
+    public Label successLabel;
     @FXML ListView<String> exerciseListView;
     ObservableList<String> ExerciseItems;
     ObservableList<String> ProgramItems;
@@ -66,7 +69,25 @@ public class programController extends SceneController implements Initializable{
             exerciseList.add(e.toString());
         }
         //write to db
-        dbh.setUpProgramØvelse(programName, exerciseList);
-        System.err.println("Wrote succesfully to the database!");
+        boolean success = dbh.setUpProgramØvelse(programName, exerciseList);
+        if(success){
+            showSuccessLabel();
+        }
+        else{
+            showFailLabel();
+        }
     }
+    public void showFailLabel(){
+
+        successLabel.setStyle("-fx-text-fill: red");
+        successLabel.setVisible(true);
+        successLabel.setText("Couldn't write to the database!");
+    }
+    public void showSuccessLabel(){
+        successLabel.setStyle("-fx-text-fill: green");
+        successLabel.setVisible(true);
+        successLabel.setText("Successfully wrote to the database!");
+    }
+
+
 }

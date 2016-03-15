@@ -3,6 +3,8 @@ import com.mysql.jdbc.SQLError;
 import javafx.application.Application;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
@@ -17,6 +19,33 @@ public class DBHandler {
             e.printStackTrace();
         }
 
+    }
+    public static void leggTilØkt(String formål, double varighet, Date date, String notat, int programID){
+        try {
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO økt(Formål,Varighet,Dato,Notat,ProgramID) VALUES(?,?,?,?,?)");
+            float Varighet = (float) varighet;
+            ps.setString(1, formål);
+            ps.setFloat(2, Varighet);
+            ps.setDate(3, date);
+            ps.setString(4, notat);
+            ps.setInt(5, programID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    //konverter en String til java.sql.Date
+    public static java.sql.Date stringToDateConverter(String string){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date parsed = null;
+        try {
+            parsed = sdf.parse(string);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Date data = new java.sql.Date(parsed.getTime());
+        return data;
     }
 
 
@@ -34,7 +63,7 @@ public class DBHandler {
     }
 
     //øvelse må finnes i database før metode under kan kjøres.
-    public void setUpProgramØvelse(String programNavn, ArrayList<String> øvelsernavn){
+    public boolean setUpProgramØvelse(String programNavn, ArrayList<String> øvelsernavn){
         // Legger til et nytt program med sett med øvelser
         try {
             leggTilProgram(programNavn);
@@ -47,9 +76,11 @@ public class DBHandler {
                     leggTilProgramØvelse(programID, øvelsenavn);
                 }
             }
+            return true;
         }catch (Exception e){
             e.printStackTrace();
         }
+        return false;
     }
     public void leggTilProgramØvelse(int programID, String øvelseNavn){
         PreparedStatement ps = null;
