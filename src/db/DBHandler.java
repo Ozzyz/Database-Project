@@ -1,4 +1,6 @@
 package db;
+import javafx.application.Application;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ public class DBHandler {
     private static Connection conn;
     public DBHandler(){
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false","root","example");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/treningbase?autoReconnect=true&useSSL=false", System.getenv("user"),System.getenv("password"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
