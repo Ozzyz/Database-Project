@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class sessionInfoController extends SceneController implements Initializable{
@@ -29,7 +30,7 @@ public class sessionInfoController extends SceneController implements Initializa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList obs = FXCollections.observableArrayList(dbh.getØktData(1));
-            infoTableView.setItems(obs);
+            infoTableView.getItems().add(obs);
 
     }
 }

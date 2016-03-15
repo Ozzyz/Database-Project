@@ -7,26 +7,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
 <GridPane fx:controller="sample.viewController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Velg økt"/>
 
     <ListView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="sessionListView"/>
-    <TableView GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="infoTableView">
-            <columns>
-                <TableColumn text="Øvelse"/>
-                <TableColumn text="Sett"/>
-                <TableColumn text="Reps"/>
-                <TableColumn text="Vekt"/>
-            </columns>
-    </TableView>
+    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="40">
+        <Label text="Reps:" />
+        <Label text="Sett:" />
+        <Label text="Vekt (kg)" />
+        <Label text="Formål: "/>
+        <Label text="Notat:"/>
+    </VBox>
+    <VBox  GridPane.rowIndex="1" GridPane.columnIndex="2">
 
-    <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Notat:"/>
-    <TextArea GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150" prefHeight="50" fx:id="notatTextArea" editable="false"/>
+    <TextArea prefWidth="150" prefHeight="50" fx:id="notatTextArea" editable="false"/>
 
-    <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Formål: "/>
-    <TextArea GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="150" prefHeight="50" fx:id="formålTextArea" editable="false"/>
 
+    <TextArea prefWidth="150" prefHeight="50" fx:id="formålTextArea" editable="false"/>
+    </VBox>
     <Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Tilbake" onAction="#backButtonClickd"/>
 
 </GridPane>

@@ -273,4 +273,21 @@ public class DBHandler {
         }
         return null;
     }
+
+    public ArrayList<Integer> latestSession(){
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ØktID , ProgramID FROM økt WHERE(ØktID=(SELECT max(ØktID) FROM økt))");
+            ArrayList<Integer> liste = new ArrayList<Integer>();
+            if(rs.next()){
+                liste.add(rs.getInt("ØktID"));
+                liste.add(rs.getInt("ProgramID"));
+            }
+            return liste;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
