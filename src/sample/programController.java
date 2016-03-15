@@ -31,14 +31,10 @@ public class programController extends SceneController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Here we will fetch data from db
+        ArrayList<String> exercises = dbh.getProgramNames();
+        ExerciseItems = populateListView(exercises, exerciseListView);
+        ProgramItems = populateListView(new ArrayList<>(), programListView);
 
-        try {
-            ArrayList<String> exercises = dbh.getProgramNames();
-            ExerciseItems = populateListView(exercises, exerciseListView);
-            ProgramItems = populateListView(new ArrayList<>(), programListView);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void addExerciseButtonClicked(ActionEvent actionEvent) {

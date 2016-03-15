@@ -90,18 +90,25 @@ public class DBHandler {
         }
     }
 
-    public ArrayList<String> getProgramNames() throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("select Navn from Program");
-        ArrayList<String> programNames = new ArrayList<>();
-        ResultSet res = ps.executeQuery();
+    public ArrayList<String> getProgramNames(){
 
-        while(res.next()){
-            programNames.add(res.getString("Navn"));
+        try{
+            PreparedStatement ps = conn.prepareStatement("select Navn from Program");
+            ArrayList<String> programNames = new ArrayList<>();
+            ResultSet res = ps.executeQuery();
+
+            while(res.next()){
+                programNames.add(res.getString("Navn"));
+            }
+            return programNames;
+        }catch (Exception e) {
+            e.printStackTrace();
         }
-        return programNames;
+        return null;
     }
 
-    public ArrayList<String> getExerciseNames() throws SQLException {
+    public ArrayList<String> getExerciseNames(){
+        try{
         PreparedStatement ps = conn.prepareStatement("select Navn from Øvelse");
         ArrayList<String> exerciseNames = new ArrayList<>();
         ResultSet res = ps.executeQuery();
@@ -110,6 +117,8 @@ public class DBHandler {
             exerciseNames.add(res.getString("Navn"));
         }
         return exerciseNames;
+        }catch (Exception e){}
+        return null;
     }
 
     public ArrayList<String> getMuscleGroupNames() throws SQLException {
