@@ -12,19 +12,19 @@
     <ComboBox fx:id="programComboBox" promptText="Velg program" id="program" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="1">Varighet: </Label>
-    <TextField id="varighet" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Desimaltall"/>
+    <TextField fx:id="varighet" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Desimaltall"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="2">Dato: </Label>
-    <DatePicker id="dato" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="dd.mm.åååå"/>
+    <DatePicker fx:id="dato" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="dd.mm.åååå"/>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Formål: </Label>
-    <TextArea id="formål" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Skriv her..."></TextArea>
+    <TextArea fx:id="formål" prefHeight="75" prefWidth="125" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Skriv her..."></TextArea>
 
     <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Notat: </Label>
-    <TextArea id="notat" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="75" prefWidth="125" promptText="Skriv her..."></TextArea>
+    <TextArea fx:id="notat" GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="75" prefWidth="125" promptText="Skriv her..."></TextArea>
 
     <Button GridPane.columnIndex="0" GridPane.rowIndex="5" text="Avbryt" onAction="#backButtonClicked"></Button>
-    <Button GridPane.columnIndex="1" GridPane.rowIndex="5" text="Registrer" onAction="#addRegisterButtonClicked"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="5" text="Registrer" onAction="#registerButtonClicked"></Button>
 
 
 </GridPane>
