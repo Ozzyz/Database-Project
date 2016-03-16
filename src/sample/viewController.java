@@ -26,8 +26,6 @@ public class viewController extends SceneController implements Initializable{
     public ListView exerciseListView;
     @FXML
     ListView<String> sessionListView;
-    @FXML
-    TableView<String> infoTableView;
 
     private int currentSelectedSession;
 
@@ -66,6 +64,11 @@ public class viewController extends SceneController implements Initializable{
         // Populate the listview
         System.out.println(exercises.size());
         populateListView(exercises, exerciseListView);
+
+        //Clear info fields
+        repTextArea.clear();
+        setTextArea.clear();
+        weightTextArea.clear();
 
     }
 

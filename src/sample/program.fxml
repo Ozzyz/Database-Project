@@ -23,8 +23,8 @@
         />
     </VBox>
     <HBox  GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="10">
-    <Button text="Lagre"  onAction="#saveButtonClicked"/>
-    <Button text="Avbryt" onAction="#backButtonClicked"/>
+        <Button text="Avbryt" onAction="#backButtonClicked"/>
+        <Button text="Registrer"  onAction="#saveButtonClicked"/>
     </HBox>
 
     <Label GridPane.columnIndex="2" GridPane.rowIndex="3" text="test" visible="false" fx:id="successLabel"/>
